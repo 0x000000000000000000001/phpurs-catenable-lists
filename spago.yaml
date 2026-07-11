@@ -1,0 +1,14 @@
+package:
+  dependencies:
+    - control
+    - foldable-traversable
+    - lists
+    - maybe
+    - prelude
+    - tuples
+    - unfoldable
+  name: "catenable-lists"
+
+workspace:
+  packageSet:
+    registry: 73.3.0
