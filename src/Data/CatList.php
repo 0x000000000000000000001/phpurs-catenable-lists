@@ -53,7 +53,8 @@ $exports['unconsImpl'] = function($nothing, $just, $cat) {
     }
     $val = $cat->array[$cat->offset];
     $rest = new CatListObj($cat->array, $cat->offset + 1);
-    return $just($val, $rest);
+    $f = $just($val);
+    return $f($rest);
 };
 
 return $exports;
