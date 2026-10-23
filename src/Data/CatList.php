@@ -1,10 +1,12 @@
 <?php
 
-class CatListObj {
+class CatListObj
+{
     public $array;
     public $offset;
 
-    public function __construct(array $array, int $offset = 0) {
+    public function __construct(array $array, int $offset = 0)
+    {
         $this->array = $array;
         $this->offset = $offset;
     }
@@ -12,21 +14,21 @@ class CatListObj {
 
 $exports['empty'] = new CatListObj([]);
 
-$exports['null'] = function($cat) {
+$exports['null'] = function ($cat) {
     return \count($cat->array) === $cat->offset;
 };
 
-$exports['length'] = function($cat) {
+$exports['length'] = function ($cat) {
     return \count($cat->array) - $cat->offset;
 };
 
-$exports['append'] = function($cat1, $cat2) {
+$exports['append'] = function ($cat1, $cat2) {
     $a1 = \array_slice($cat1->array, $cat1->offset);
     $a2 = \array_slice($cat2->array, $cat2->offset);
     return new CatListObj(\array_merge($a1, $a2));
 };
 
-$exports['cons'] = function($a, $cat) {
+$exports['cons'] = function ($a, $cat) {
     if ($cat->offset > 0) {
         $newArr = $cat->array;
         $newArr[$cat->offset - 1] = $a;
@@ -37,17 +39,17 @@ $exports['cons'] = function($a, $cat) {
     return new CatListObj($a1);
 };
 
-$exports['singleton'] = function($a) {
+$exports['singleton'] = function ($a) {
     return new CatListObj([$a]);
 };
 
-$exports['snoc'] = function($cat, $a) {
+$exports['snoc'] = function ($cat, $a) {
     $newArr = $cat->array;
     $newArr[] = $a;
     return new CatListObj($newArr, $cat->offset);
 };
 
-$exports['unconsImpl'] = function($nothing, $just, $cat) {
+$exports['unconsImpl'] = function ($nothing, $just, $cat) {
     if (\count($cat->array) === $cat->offset) {
         return $nothing;
     }
